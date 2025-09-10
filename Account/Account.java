@@ -11,7 +11,6 @@ public class Account
         this.name = "";
         this.balance = 0.0;
         this.num = 0;
-        this.balance = 0.0;
         this.senha = "0000";
     }
 
@@ -66,13 +65,11 @@ public class Account
         return limit;
     }
 
-    public void withdraw (double WDamount)
-    {
-        if (WDamount > limit)
+    public void withdraw(double WDamount) {
+        if (WDamount > balance + limit)
         {
             System.out.println("Saldo insuficiente!");
-        }
-        else 
+        } else
         {
             balance -= WDamount;
         }
