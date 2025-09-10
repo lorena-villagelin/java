@@ -12,40 +12,63 @@ public class AccountTest
 
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Deposit for account1: ");
-        double depositAmount = input.nextDouble();
-        System.out.printf("%nAdding: %.2f%n%n", depositAmount);
-        account1.deposit(depositAmount);
-
-        System.out.printf("name: %s | balance: $%.2f | number: %d | limit: $%.2f%n", account1.getName(), account1.getBalance(), account1.getNum(), account1.getLimit());
-        System.out.printf("name: %s | balance: $%.2f | number: %d | limit: $%.2f%n", account2.getName(), account2.getBalance(), account2.getNum(), account2.getLimit());
+        int  option =-1;
         
-        System.out.print("Deposit for account2: ");
-        depositAmount = input.nextDouble();
-        System.out.printf("%nAdding: %.2f%n%n", depositAmount);
-        account2.deposit(depositAmount);
+        while(option != 0)
+        {
+            System.out.println("\n--- MENU ---");
+            System.out.println("1 - Depositar");
+            System.out.println("2 - Sacar");
+            System.out.println("3 - Ver saldo");
+            System.out.println("4 - Trocar senha");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha uma opção: ");
+            option = input.nextInt();
+
+            switch(option) {
+                case 1:
+                    System.out.print("Escolha a conta (1 ou 2): ");
+                    int contaDep = input.nextInt();
+                    System.out.print("Valor do depósito: ");
+                    double dep = input.nextDouble();
+                    if (contaDep == 1) account1.deposit(dep);
+                    else account2.deposit(dep);
+                    break;
         
-        System.out.printf("name: %s | balance: $%.2f | number: %d | limit: $%.2f%n", account1.getName(), account1.getBalance(), account1.getNum(), account1.getLimit());
-        System.out.printf("name: %s | balance: $%.2f | number: %d | limit: $%.2f%n", account2.getName(), account2.getBalance(), account2.getNum(), account2.getLimit());
-
-        System.out.print("Withdraw for account1:");
-        double WDamount = input.nextDouble();
-        account1.withdraw(WDamount);
-
-        System.out.print("Withdraw for account2: ");
-        WDamount = input.nextDouble();
-        account2.withdraw(WDamount);
-
-        System.out.print("Old password Account1: ");
-        String oldpass = input.next();
-
-        System.out.print("New password for Account1: ");
-        String newpass = input.next();
-
-        account1.changePassword(oldpass, newpass);
+                case 2:
+                    System.out.print("Escolha a conta (1 ou 2): ");
+                    int contaSaq = input.nextInt();
+                    System.out.print("Valor do saque: ");
+                    double saq = input.nextDouble();
+                    if (contaSaq == 1) account1.withdraw(saq);
+                    else account2.withdraw(saq);
+                    break;
         
+                case 3:
+                    System.out.printf("Account1 -> saldo: $%.2f (limite: %.2f)%n", account1.getBalance(), account1.getLimit());
+                    System.out.printf("Account2 -> saldo: $%.2f (limite: %.2f)%n", account2.getBalance(), account2.getLimit());
+                    break;
+        
+                case 4:
+                    System.out.print("Escolha a conta (1 ou 2): ");
+                    int contaSenha = input.nextInt();
+                    System.out.print("Senha antiga: ");
+                    String oldpass = input.next();
+                    System.out.print("Nova senha: ");
+                    String newpass = input.next();
+                
+                    if (contaSenha == 1) account1.changePassword(oldpass, newpass);
+                    else account2.changePassword(oldpass, newpass);
+                    break;
+        
+                case 0:
+                    System.out.println("Saindo...");
+                    break;
+        
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        }
         input.close();
-
-
     }
 }
