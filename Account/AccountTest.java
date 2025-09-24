@@ -2,6 +2,9 @@ import java.util.Scanner;
 
 public class AccountTest
 {
+    /**
+     * @param args
+     */
     public static void main(String[] args)
     {
         Account account1 = new Account(); //sem parametros
@@ -82,7 +85,7 @@ public class AccountTest
                                 System.out.println("Opção inválida!");
                         }
                     }
-            }
+            
 
             case 0:
                 System.out.println("Saindo...");
@@ -97,5 +100,6 @@ public class AccountTest
 
 
         input.close();
+    }
     }
 }
